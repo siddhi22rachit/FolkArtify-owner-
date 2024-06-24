@@ -1,0 +1,41 @@
+.listPage{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.listContainer{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.wrapperlist{
+  height: 100%;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+}
+
+.titlelist{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  margin-top: 20px;
+
+}
+
+.titlelist button{
+  padding: 20px 24px;
+  background-color: #fece51;
+  border:none
+}
+
+/* .titlelist a{
+  padding-right: 200px;
+} */

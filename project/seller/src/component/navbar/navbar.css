@@ -1,0 +1,44 @@
+nav{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+a{
+  transition: all 0.4s ease;
+}
+
+a:hover{
+  scale: 1.05;
+}
+
+.left{
+  flex: 3;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.logo{
+  font-weight: bold;
+  font-weight: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+
+}
+
+.logo img{
+  width: 40px;
+
+}
+
+.right button{
+  height: 40px;
+  padding: 0;
+  width: 200%;
+}
+

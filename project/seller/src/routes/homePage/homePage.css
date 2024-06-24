@@ -1,0 +1,73 @@
+.homePage {
+  display: flex;
+  height: 100%;
+}
+
+.homePage textContainer {
+  flex: 3;
+  padding: 20px;
+}
+
+.wrapperhome {
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  height: 100%;
+}
+
+.wrapperhome h1{
+  font-size: 64px;
+}
+
+.boxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  text-align: center;
+}
+
+.box h1 {
+  font-size: 36px;
+}
+
+.box h2 {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.imgContainerhome {
+  flex: 2;
+  width: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+}
+
+.imgContainerhome img {
+  width: 450%;
+  object-fit: cover;
+}
+
+.button {
+  background-color: darkorange;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  width: 40%;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 50px;
+  transition: box-shadow 0.3s ease-in-out;
+  height: 10%;
+}
+
+.button:hover {
+  box-shadow: 0 0 15px darkorange;
+}

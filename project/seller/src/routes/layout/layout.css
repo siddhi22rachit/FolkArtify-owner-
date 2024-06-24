@@ -1,0 +1,13 @@
+.layout {
+  height: 100vh;
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  height: calc(100vh - 100px);
+}
