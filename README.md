@@ -1,6 +1,6 @@
 # FolkArtify (owner side)
 
-This project is a full-stack estate management application built with React, Node.js, and MongoDB.
+This project is a full-stack product management application built with React, Node.js, and MongoDB.
 
 ## Features
 
