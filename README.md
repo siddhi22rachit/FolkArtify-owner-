@@ -4,8 +4,8 @@ This project is a full-stack product management application built with React, No
 
 ## Features
 
-- Property listing and management
-- Map integration for property locations
+- product listing and management
+- Map integration for owner shop locations
 - Image upload functionality
 
   ## Installation
@@ -21,6 +21,7 @@ This project is a full-stack product management application built with React, No
    Add .env file
      DATABASE_URL=your_mongodb_url
      JWT_SECRET_KEY=your_secret_key
+     CLIENT_URL="localhost"
     ```bash
     cd api
     npx nodemon app.js
