@@ -5,6 +5,7 @@ import HomePage from './routes/homePage/homePage'
 import ListPage from './routes/listPage/listPage'
 import NewPost from "./routes/newPost/newPost";
 import SinglePage from "./routes/singlePage/singlePage";
+import About from "./routes/about/about";
 import { listPageLoader, singlePageLoader } from "./lib/loaders";
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
     {
     path:"/",
     element: <HomePage/>,
+   },
+   {
+    path:"/about",
+    element:<About/>,
    },
    {
     path:"/list",

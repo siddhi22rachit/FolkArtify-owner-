@@ -14,13 +14,15 @@ const Navbar = () => {
           </div>
         </a>
         <a href="/">Home</a>
-        <a href="/">About</a>
+        <a href="/about">About</a>
         <a href="/">Contact</a>
         <a href="/">Agents</a>
       </div>
       
       <div className="right">
-      <button className="button" >Start Selling</button>
+      <button className="button" >login</button>
+      <button className="button" >sign up</button>
+
       </div>
     </nav>
   );

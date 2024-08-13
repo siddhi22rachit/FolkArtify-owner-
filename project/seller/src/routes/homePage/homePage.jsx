@@ -29,7 +29,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="imgContainerhome">
-        <img src="/homepage.avif" alt="" />
+        <img src="/homepage.jpg" alt="" />
       </div>
     </div>
   )

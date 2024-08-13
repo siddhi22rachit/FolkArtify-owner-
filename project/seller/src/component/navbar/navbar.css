@@ -1,44 +1,46 @@
-nav{
+nav {
   height: 100px;
+  width: 1300px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between; /* Aligns left and right sections properly */
   align-items: center;
-
+  padding: 0 20px; /* Adds padding to the nav for spacing */
 }
 
-a{
+a {
   transition: all 0.4s ease;
+  padding: 10px; /* Increases clickable area */
 }
 
-a:hover{
-  scale: 1.05;
+a:hover {
+  transform: scale(1.05); /* Corrects 'scale' to 'transform: scale' */
 }
 
-.left{
-  flex: 3;
+.left {
+  flex: 1; /* Adjust flex-grow to 1 */
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 20px;
 }
 
-.logo{
+.logo {
   font-weight: bold;
-  font-weight: 20px;
+  font-size: 20px; /* Corrected font size */
   display: flex;
   align-items: center;
   gap: 10px;
-  
-
 }
 
-.logo img{
+.logo img {
   width: 40px;
-
 }
 
-.right button{
-  height: 40px;
-  padding: 0;
-  width: 200%;
-}
+.right button {
+  height: 50px;
+  padding: 0 20px; /* Adds horizontal padding */
+  width: auto; /* Removes the 200% width */
+  font-size: 20px; /* Makes the button text readable */
+  cursor: pointer; /* Adds a pointer cursor for better UX */
+margin-right: 20px;
 
+}
