@@ -1,0 +1,20 @@
+/* About.css */
+
+.about-container {
+  text-align: center; /* Center-aligns the content within the container */
+}
+.about_me{
+  margin-bottom: 20px;
+  color: rgba(192, 107, 22, 0.833);
+  
+}
+
+.slider-container {
+  margin-bottom: 50px; /* Adds space between the slider and the paragraph */
+}
+
+.about-content {
+  text-align: left; /* Ensures that the text is left-aligned */
+  margin: 0 auto; /* Centers the paragraph */
+  max-width: 1500px; /* Limits the width of the paragraph for better readability */
+}

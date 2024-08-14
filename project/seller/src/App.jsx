@@ -7,6 +7,7 @@ import NewPost from "./routes/newPost/newPost";
 import SinglePage from "./routes/singlePage/singlePage";
 import About from "./routes/about/about";
 import { listPageLoader, singlePageLoader } from "./lib/loaders";
+import MultiStepForm from "./routes/multiStepForm/MultiStepForm";
 
 function App() {
   const router= createBrowserRouter([
@@ -25,20 +26,19 @@ function App() {
     path:"/list",
     element:<ListPage/>,
     loader: listPageLoader,
-   },
-  
+   },  
    {
     path:"/add",
     element:<NewPost/>,
    },
-
    {
      path:"/:id",
      element:<SinglePage/>,
      loader: singlePageLoader,
    }
 
-]}
+]},
+{path:"/form",element:<MultiStepForm/>}
 ]);
 
 return(

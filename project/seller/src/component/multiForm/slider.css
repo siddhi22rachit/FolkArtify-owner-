@@ -1,0 +1,36 @@
+.progress-bar {
+  width: 100%;
+  background-color: #f3f3f3;
+  margin: 20px 0;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+input, textarea {
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
