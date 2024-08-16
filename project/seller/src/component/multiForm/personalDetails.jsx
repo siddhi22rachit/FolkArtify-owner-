@@ -1,37 +1,39 @@
-import React from 'react';
+import React from "react";
 
-const PersonalDetails = ({ formData, handleChange, nextStep }) => (
+const PersonalDetails = ({ formData, handleChange }) => (
   <div>
     <h2>Personal Details</h2>
+    <label htmlFor="Name">Name  *</label>
     <input
       type="text"
       name="name"
-      value={formData.name || ''}
+      value={formData.name || ""}
       onChange={handleChange}
-      placeholder="Name"
+      placeholder="ABC"
     />
+    <label htmlFor="Phone No.">Phone No. *</label>
     <input
-      type="text"
+      type="number"
       name="phone"
-      value={formData.phone || ''}
+      value={formData.phone || ""}
       onChange={handleChange}
-      placeholder="Phone"
+      placeholder="72086*****"
     />
+    <label htmlFor="email">Email</label>
     <input
       type="email"
       name="email"
-      value={formData.email || ''}
+      value={formData.email || ""}
       onChange={handleChange}
-      placeholder="Email"
+      placeholder="Abc@xyz.com"
     />
+    <label htmlFor="Address">Address </label>
     <input
       type="text"
       name="address"
-      value={formData.address || ''}
+      value={formData.address || ""}
       onChange={handleChange}
-      placeholder="Address"
     />
-    <button onClick={nextStep}>Next</button>
   </div>
 );
 

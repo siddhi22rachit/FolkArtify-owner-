@@ -1,8 +1,9 @@
 import React from 'react';
 
-const BankDetails = ({ formData, handleChange, prevStep }) => (
+const BankDetails = ({ formData, handleChange }) => (
   <div>
     <h2>Bank Details</h2>
+    <label htmlFor="Name">Bank Name*</label>
     <input
       type="text"
       name="bankName"
@@ -10,6 +11,8 @@ const BankDetails = ({ formData, handleChange, prevStep }) => (
       onChange={handleChange}
       placeholder="Bank Name"
     />
+        <label htmlFor="acc_no">Account no.*</label>
+
     <input
       type="text"
       name="accountNo"
@@ -17,9 +20,15 @@ const BankDetails = ({ formData, handleChange, prevStep }) => (
       onChange={handleChange}
       placeholder="Account No."
     />
-    {/* Other bank details */}
-    <button onClick={prevStep}>Back</button>
-    <button onClick={() => alert("Form Submitted!")}>Submit</button>
+    <label htmlFor="ifsc">IFEC code*</label>
+
+<input
+      type="text"
+      name="ifsc"
+      value={formData.ifsc}
+      onChange={handleChange}
+      placeholder="IFSC code"
+    />
   </div>
 );
 

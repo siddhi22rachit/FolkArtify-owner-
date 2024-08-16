@@ -1,24 +1,15 @@
+// ProgressBar.jsx
 import React from 'react';
+import './progressBar.css';
 
 const ProgressBar = ({ step }) => {
-  const getProgress = () => {
-    switch (step) {
-      case 1:
-        return "25%";
-      case 2:
-        return "50%";
-      case 3:
-        return "75%";
-      case 4:
-        return "100%";
-      default:
-        return "0%";
-    }
-  };
-
   return (
-    <div className="progress-bar">
-      <div className="progress" style={{ width: getProgress() }}></div>
+    <div className="progress-container">
+      <div className={`circle ${step >= 1 ? 'active' : ''}`}>1</div>
+      <div className={`circle ${step >= 2 ? 'active' : ''}`}>2</div>
+      <div className={`circle ${step >= 3 ? 'active' : ''}`}>3</div>
+      <div className={`circle ${step >= 4 ? 'active' : ''}`}>4</div>
+      <div className={`progress-line ${step > 1 ? 'active' : ''}`} style={{ width: `${(step - 1) * 33.3}%` }}></div>
     </div>
   );
 };

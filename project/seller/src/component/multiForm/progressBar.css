@@ -1,0 +1,39 @@
+/* MultiStepForm.css */
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.circle.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.progress-line {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  right: 15px;
+  height: 4px;
+  background-color: #ddd;
+  z-index: 0;
+}
+
+.progress-line.active {
+  background-color: #4CAF50;
+}
