@@ -34,6 +34,15 @@ const PersonalDetails = ({ formData, handleChange }) => (
       value={formData.address || ""}
       onChange={handleChange}
     />
+        <label htmlFor="password">Password </label>
+    <input
+  type="password"
+  name="password"
+  value={formData.password || ''}
+  onChange={handleChange}
+  placeholder="Enter Password"
+/>
+
   </div>
 );
 

@@ -1,45 +1,59 @@
-generator client{
+generator client {
   provider = "prisma-client-js"
 }
 
-datasource db{
+datasource db {
   provider = "mongodb"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
+model PostDetail {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  desc     String
+  quality  String?
+  category Category
+  size     Int?
+  post     Post     @relation(fields: [postId], references: [id])
+  postId   String   @unique @db.ObjectId
+}
 
-   model PostDetail{
-    id String @id @default(auto()) @map("_id")@db.ObjectId
-    desc String
-    quality String?
-    category Category
-    size Int?
-    post Post @relation(fields: [postId], references: [id])
-    postId String @db.ObjectId @unique
-   }
+enum Category {
+  cloths
+  furniture
+  wall_decor
+}
 
-   enum Category{
-    cloths
-    furniture
-    wall_decor
-   }
-
-   model Post{
-  id  String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-   price Int
-   images String[]
-   address String
-    latitude   String
+model Post {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  price      Int
+  images     String[]
+  address    String
+  latitude   String
   longitude  String
-   city String
-   rate Int
-   type Type
-   createdAt DateTime @default(now())
-   postDetail PostDetail?
-   }
+  city       String
+  rate       Int
+  type       Type
+  createdAt  DateTime    @default(now())
+  postDetail PostDetail?
+}
 
-   enum Type{
-    buy
-    rent
-   }
+enum Type {
+  buy
+  rent
+}
+
+model userSchema {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  name           String
+  phone          String
+  email          String
+  address        String
+  product        String
+  shopAddress    String
+  productDetails String
+  bankName       String
+  accountNo      String
+  bankDetails    String
+  password       String
+}

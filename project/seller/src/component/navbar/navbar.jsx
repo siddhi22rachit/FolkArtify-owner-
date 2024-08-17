@@ -1,7 +1,14 @@
 import "./navbar.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+const navigate = useNavigate();
+
+const handleSubmit=()=>{
+  navigate('/form');
+}
+
   return (
     <nav>
       <div className="left">
@@ -20,7 +27,7 @@ const Navbar = () => {
       </div>
       
       <div className="right">
-      <button className="button" >login</button>
+      <button className="button" onClick={handleSubmit}>login</button>
       <button className="button" >sign up</button>
 
       </div>

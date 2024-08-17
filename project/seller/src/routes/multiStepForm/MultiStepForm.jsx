@@ -18,6 +18,7 @@ function MultiStepForm() {
     phone: '',
     email: '',
     address: '',
+    password:'',
     product: '',
     shopAddress: '',
     productDetails: '',
