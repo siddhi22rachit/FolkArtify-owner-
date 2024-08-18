@@ -8,6 +8,7 @@ import SinglePage from "./routes/singlePage/singlePage";
 import About from "./routes/about/about";
 import { listPageLoader, singlePageLoader } from "./lib/loaders";
 import MultiStepForm from "./routes/multiStepForm/MultiStepForm";
+import Success from "./routes/succes/success";
 
 function App() {
   const router= createBrowserRouter([
@@ -38,8 +39,10 @@ function App() {
    }
 
 ]},
-{path:"/form",element:<MultiStepForm/>}
+{path:"/form",element:<MultiStepForm/>},
+{path:"/success",element:<Success/>}
 ]);
+
 
 return(
   <RouterProvider router={router}/>)

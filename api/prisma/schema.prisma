@@ -43,7 +43,7 @@ enum Type {
   rent
 }
 
-model userSchema {
+model user{s
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   phone          String
@@ -54,6 +54,6 @@ model userSchema {
   productDetails String
   bankName       String
   accountNo      String
-  bankDetails    String
+  ifsc           String
   password       String
 }

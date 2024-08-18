@@ -6,6 +6,8 @@ import ShopDetails from '../../component/multiForm/shopDetails';
 import BankDetails from '../../component/multiForm/bankDetails';
 import './MultiStepForm.css';
 import ProgressBar from '../../component/multiForm/progressBar';
+import apiRequest from '../../lib/apiRequest';
+import Success from '../succes/success';
 
 function MultiStepForm() {
   const [step, setStep] = useState(() => {
@@ -28,18 +30,34 @@ function MultiStepForm() {
   });
 
   const [isVerified, setIsVerified] = useState(false);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();  // Prevent default form submission
+    setError("");
+    setIsLoading(true);
+  
+    try {
+      // Send the formData directly to the server
+      const res = await apiRequest.post("/auth/register", formData);
+      navigate("/success");
+    } catch (err) {
+      setError(err.response ? err.response.data.message : err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  
 
   const handleNext = () => {
     if (step === 1 && (!formData.name || !formData.phone )) {
       alert('Please fill in all fields');
       return;
     }
-    if (step === 2 && !isVerified) {
-      alert('Please verify your phone number');
-      return;
-    }
+    
     if (step === 3 && (!formData.product || !formData.shopAddress )) {
       alert('Please fill in all fields');
       return;
@@ -107,9 +125,10 @@ function MultiStepForm() {
         {step < 4 ? (
           <button onClick={handleNext}>Next</button>
         ) : (
-          <button onClick={() => alert('Form Submitted!')}>Submit</button>
+          <button onClick={handleSubmit} disabled={isLoading}>Submit</button>
         )}
-        
+                  {error && <span>{error}</span>}
+
       </div>
     </div>
   );
