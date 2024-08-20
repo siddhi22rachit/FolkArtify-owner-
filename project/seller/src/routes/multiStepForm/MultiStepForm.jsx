@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import PersonalDetails from '../../component/multiForm/personalDetails';
-import PhoneVerification from '../../component/multiForm/phoneVerification';
-import ShopDetails from '../../component/multiForm/shopDetails';
-import BankDetails from '../../component/multiForm/bankDetails';
-import './MultiStepForm.css';
-import ProgressBar from '../../component/multiForm/progressBar';
-import apiRequest from '../../lib/apiRequest';
-import Success from '../succes/success';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PersonalDetails from "../../component/multiForm/personalDetails";
+import PhoneVerification from "../../component/multiForm/phoneVerification";
+import ShopDetails from "../../component/multiForm/shopDetails";
+import BankDetails from "../../component/multiForm/bankDetails";
+import "./MultiStepForm.css";
+import ProgressBar from "../../component/multiForm/progressBar";
+import apiRequest from "../../lib/apiRequest";
 
 function MultiStepForm() {
   const [step, setStep] = useState(() => {
-    const savedStep = localStorage.getItem('currentStep');
+    const savedStep = localStorage.getItem("currentStep");
     return savedStep ? parseInt(savedStep) : 1;
   });
 
   const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    address: '',
-    password:'',
-    product: '',
-    shopAddress: '',
-    productDetails: '',
-    bankName: '',
-    accountNo: '',
-    ifsc: '',
+    name: "",
+    phone: "",
+    email: "",
+    address: "",
+    password: "",
+    product: "",
+    shopAddress: "",
+    productDetails: "",
+    bankName: "",
+    accountNo: "",
+    ifsc: "",
+    images: [],
   });
 
   const [isVerified, setIsVerified] = useState(false);
@@ -35,14 +35,25 @@ function MultiStepForm() {
 
   const navigate = useNavigate();
 
+  const { name, phone, email, address, bankName, ifsc, product, images } = formData;
+
+
   const handleSubmit = async (e) => {
-    e.preventDefault();  // Prevent default form submission
+    e.preventDefault(); // Prevent default form submission
     setError("");
     setIsLoading(true);
-  
+
     try {
       // Send the formData directly to the server
       const res = await apiRequest.post("/auth/register", formData);
+
+      // Save formData to localStorage
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ name, phone, email, address, bankName, ifsc, product, images })
+      );
+
+      // Navigate to the success page
       navigate("/success");
     } catch (err) {
       setError(err.response ? err.response.data.message : err.message);
@@ -50,34 +61,36 @@ function MultiStepForm() {
       setIsLoading(false);
     }
   };
-  
 
   const handleNext = () => {
-    if (step === 1 && (!formData.name || !formData.phone )) {
-      alert('Please fill in all fields');
+    if (step === 1 && (!formData.name )) {
+      alert("Please fill in all fields");
       return;
     }
-    
-    if (step === 3 && (!formData.product || !formData.shopAddress )) {
-      alert('Please fill in all fields');
+
+    if (step === 3 && (!formData.product )) {
+      alert("Please fill in all fields");
       return;
     }
-    if (step === 4 && (!formData.bankName || !formData.accountNo || !formData.bankDetails)) {
-      alert('Please fill in all fields');
+    if (
+      step === 4 &&
+      (!formData.bankName )
+    ) {
+      alert("Please fill in all fields");
       return;
     }
     setStep(step + 1);
-    localStorage.setItem('currentStep', step + 1);
+    localStorage.setItem("currentStep", step + 1);
   };
 
   const handleBack = () => {
     setStep(step - 1);
-    localStorage.setItem('currentStep', step - 1);
+    localStorage.setItem("currentStep", step - 1);
   };
 
   const handleCancel = () => {
-    localStorage.removeItem('currentStep');
-    navigate('/');
+    localStorage.removeItem("currentStep");
+    navigate("/");
   };
 
   const handleChange = (e) => {
@@ -101,7 +114,7 @@ function MultiStepForm() {
           formData={formData}
           handleChange={handleChange}
           nextStep={handleNext}
-          setIsVerified={setIsVerified}  // Pass setIsVerified to PhoneVerification
+          setIsVerified={setIsVerified} // Pass setIsVerified to PhoneVerification
         />
       )}
       {step === 3 && (
@@ -120,15 +133,16 @@ function MultiStepForm() {
         />
       )}
       <div className="form-navigation">
-      <button onClick={handleCancel}>Cancel</button>
+        <button onClick={handleCancel}>Cancel</button>
         {step > 1 && <button onClick={handleBack}>Back</button>}
         {step < 4 ? (
           <button onClick={handleNext}>Next</button>
         ) : (
-          <button onClick={handleSubmit} disabled={isLoading}>Submit</button>
+          <button onClick={handleSubmit} disabled={isLoading}>
+            Submit
+          </button>
         )}
-                  {error && <span>{error}</span>}
-
+        {error && <span>{error}</span>}
       </div>
     </div>
   );

@@ -1,35 +1,59 @@
 import "./navbar.css";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+  console.log("Current User:", currentUser);
 
-const handleSubmit=()=>{
-  navigate('/form');
-}
+  const handleSubmit = () => {
+    navigate("/form");
+  };
 
   return (
     <nav>
       <div className="left">
-        <a href="/">
+        <Link to="/">
           <div className="logo">
-            
-            <img src="/logo.png" alt="" />
-            
+            <img src="/logo.png" alt="FolkArtify Logo" />
             <span>FolkArtify</span>
           </div>
-        </a>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/form">Contact</a>
-        <a href="/">Agents</a>
+        </Link>
+        <Link to="/">Home</Link>
+        {currentUser ? (
+          <>
+            <Link to="/about">Dashboard</Link>
+            <Link to="/form">List</Link>
+            <Link to="/about">About</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/about">About</Link>
+            <Link to="/form">Contact</Link>
+          </>
+        )}
       </div>
-      
-      <div className="right">
-      <button className="button" onClick={handleSubmit}>login</button>
-      <button className="button" >sign up</button>
 
+      <div className="right">
+        {currentUser ? (
+          <div className="userNav">
+             <img
+              src={currentUser.images}
+              alt=""
+            />
+            <span>{currentUser.name}</span>
+            <Link to="/profile" className="profile">
+             <button>Profile</button>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <button className="button" onClick={() => navigate("/login")}>Login</button>
+            <button className="button" onClick={handleSubmit}>Sign Up</button>
+          </>
+        )}
       </div>
     </nav>
   );

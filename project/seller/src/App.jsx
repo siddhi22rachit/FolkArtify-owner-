@@ -9,6 +9,7 @@ import About from "./routes/about/about";
 import { listPageLoader, singlePageLoader } from "./lib/loaders";
 import MultiStepForm from "./routes/multiStepForm/MultiStepForm";
 import Success from "./routes/succes/success";
+import ProfilePage from "./routes/profilePage/profilePage";
 
 function App() {
   const router= createBrowserRouter([
@@ -40,7 +41,12 @@ function App() {
 
 ]},
 {path:"/form",element:<MultiStepForm/>},
-{path:"/success",element:<Success/>}
+{path:"/success",element:<Success/>},
+{
+ path:"/profile",
+ element:<ProfilePage/>,
+ loader: singlePageLoader,
+}
 ]);
 
 

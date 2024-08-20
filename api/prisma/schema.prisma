@@ -43,8 +43,8 @@ enum Type {
   rent
 }
 
-model user{s
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
+model user {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   phone          String
   email          String
@@ -56,4 +56,5 @@ model user{s
   accountNo      String
   ifsc           String
   password       String
+  images         String[]
 }

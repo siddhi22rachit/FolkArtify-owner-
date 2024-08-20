@@ -36,11 +36,24 @@ a:hover {
 }
 
 .right button {
-  height: 50px;
-  padding: 0 20px; /* Adds horizontal padding */
+  height: 50px; /* Adds horizontal padding */
   width: auto; /* Removes the 200% width */
   font-size: 20px; /* Makes the button text readable */
   cursor: pointer; /* Adds a pointer cursor for better UX */
 margin-right: 20px;
 
+}
+.userNav{
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  font-weight: bold;
+}
+
+.userNav img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
 }

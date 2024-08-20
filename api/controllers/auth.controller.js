@@ -15,6 +15,7 @@ export const register = async(req,res)=>{
     accountNo,
     ifsc,
     password,
+    images,
   } = req.body;
   try{
     //checking if the user exixts or not
@@ -45,6 +46,7 @@ export const register = async(req,res)=>{
       bankName,
       accountNo,
       ifsc,
+      images,
       password: hashedPassword,
       },
     });
@@ -67,3 +69,7 @@ export const login = async(req,res)=>{
     res.status(500).json({message:"failed"});
   }
 }
+
+export const logout = (req, res) => {
+  res.clearCookie("token").status(200).json({ message: "Logout Successful" });
+};

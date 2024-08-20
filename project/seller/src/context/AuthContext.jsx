@@ -1,20 +1,24 @@
-// import { createContext, useEffect, useState } from "react";
-// export const AuthContext = createContext()
-// export const AuthContextProvider =({Children})=>{
-//   const[currentUser, setCurrentUser]= useState(
-//     JSON.parse(localStorage.getItem("user"))|| null
-//   );
-//   const updateUser=(data)=>{
-//     setCurrentUser(data);
-//   };
+import { createContext, useEffect, useState } from "react";
 
-//   useEffect(()=>{
-//     localStorage.setItem("user",JSON.stringify
-//       (currentUser)
-//     );
-//   },[currentUser]);
+export const AuthContext =createContext();
 
-//   return(
-//     <AuthContext.Provider value={{currentUser,updateUser}}>{Children}</AuthContext.Provider>
-//    )
-// }
+export const AuthContextProvider=({children})=>{
+  const [currentUser, setCurentUser]= useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
+   
+  const updateUser=(data)=>{
+    setCurentUser(data);
+  };
+
+
+  useEffect(()=>{
+    localStorage.setItem("user",JSON.stringify(currentUser));
+  },[currentUser]);
+
+
+   return(
+    <AuthContext.Provider value={{currentUser,updateUser}}>{children}</AuthContext.Provider>
+   )
+
+}

@@ -1,0 +1,48 @@
+.personal-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.left-content {
+  flex: 1;
+  max-width: 60%;
+}
+
+.left-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.left-content input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.right-content {
+  flex: 1;
+  max-width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25%;
+}
+
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.image-preview img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+}

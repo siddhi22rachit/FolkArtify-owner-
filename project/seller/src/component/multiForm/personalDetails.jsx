@@ -1,49 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
+import UploadWidget from "../uploadWidget/UploadWidget";
+import "./personalDetails.css"; // Assuming you have this CSS for styling
 
-const PersonalDetails = ({ formData, handleChange }) => (
-  <div>
-    <h2>Personal Details</h2>
-    <label htmlFor="Name">Name  *</label>
-    <input
-      type="text"
-      name="name"
-      value={formData.name || ""}
-      onChange={handleChange}
-      placeholder="ABC"
-    />
-    <label htmlFor="Phone No.">Phone No. *</label>
-    <input
-      type="number"
-      name="phone"
-      value={formData.phone || ""}
-      onChange={handleChange}
-      placeholder="72086*****"
-    />
-    <label htmlFor="email">Email</label>
-    <input
-      type="email"
-      name="email"
-      value={formData.email || ""}
-      onChange={handleChange}
-      placeholder="Abc@xyz.com"
-    />
-    <label htmlFor="Address">Address </label>
-    <input
-      type="text"
-      name="address"
-      value={formData.address || ""}
-      onChange={handleChange}
-    />
-        <label htmlFor="password">Password </label>
-    <input
-  type="password"
-  name="password"
-  value={formData.password || ''}
-  onChange={handleChange}
-  placeholder="Enter Password"
-/>
+const PersonalDetails = ({ formData, handleChange }) => {
+  const [images, setImages] = useState(formData.images || []);
 
-  </div>
-);
+  // Function to handle image upload and update formData
+  const handleImageUpload = (uploadedImages) => {
+    const imageUrls = uploadedImages.map((image) => image.secure_url); // Extracting the secure_url from each image
+  
+    console.log('Uploaded Images:', imageUrls); // Check the array of URLs
+    setImages(imageUrls);
+    handleChange({ target: { name: "images", value: imageUrls } }); // Update formData with the array of URLs
+  };
+  
+
+  return (
+    <div className="personal-details-container">
+      <div className="left-content">
+        <h2>Personal Details</h2>
+        {/* Other form fields */}
+      </div>
+
+      <div className="right-content">
+        <div className="image-preview">
+          {images.map((image, index) => (
+            <img src={image} key={index} alt="Uploaded" />
+          ))}
+        </div>
+        <UploadWidget
+          uwConfig={{
+            multiple: true,
+            cloudName: "drvn2upzw",
+            uploadPreset: "e-commerce",
+            folder: "posts",
+          }}
+          setState={handleImageUpload} // Pass the handleImageUpload function here
+        />
+      </div>
+    </div>
+  );
+};
 
 export default PersonalDetails;
