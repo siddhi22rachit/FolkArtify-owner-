@@ -1,5 +1,4 @@
 import React from 'react'
-import { singlePostData, userData} from '../../lib/dummydata';
 import "./singlePage.css";
 import Slider from '../../component/slider/Slider';
 import Map from '../../component/map/Map';

@@ -1,0 +1,12 @@
+.product-stats {
+  padding: 20px;
+}
+
+.product-stats h2 {
+  margin-bottom: 20px;
+}
+
+.product-stats p {
+  font-size: 18px;
+  margin: 10px 0;
+}

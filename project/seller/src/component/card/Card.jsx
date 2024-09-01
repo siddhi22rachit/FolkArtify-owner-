@@ -2,6 +2,9 @@ import React from "react";
 import{Link} from "react-router-dom";
 import "./card.css"
 function Card({ item }) {
+  if (!item) {
+    return null; // or return a placeholder/error message
+  }
   return (
     <div className="card">
       <Link to={`/${item.id}`} className="imageContainer">

@@ -29,6 +29,8 @@ const BankDetails = ({ formData, handleChange }) => (
       onChange={handleChange}
       placeholder="IFSC code"
     />
+
+    
   </div>
 );
 

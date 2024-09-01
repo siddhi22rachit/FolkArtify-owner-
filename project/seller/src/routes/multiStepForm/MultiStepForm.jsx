@@ -26,17 +26,12 @@ function MultiStepForm() {
     bankName: "",
     accountNo: "",
     ifsc: "",
-    images: [],
+    avatar: "",
   });
 
-  const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
-
-  const { name, phone, email, address, bankName, ifsc, product, images } = formData;
-
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
@@ -45,13 +40,7 @@ function MultiStepForm() {
 
     try {
       // Send the formData directly to the server
-      const res = await apiRequest.post("/auth/register", formData);
-
-      // Save formData to localStorage
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ name, phone, email, address, bankName, ifsc, product, images })
-      );
+      const res = await apiRequest.post("/auth/register", formData); // Use formData directly
 
       // Navigate to the success page
       navigate("/success");
@@ -63,22 +52,6 @@ function MultiStepForm() {
   };
 
   const handleNext = () => {
-    if (step === 1 && (!formData.name )) {
-      alert("Please fill in all fields");
-      return;
-    }
-
-    if (step === 3 && (!formData.product )) {
-      alert("Please fill in all fields");
-      return;
-    }
-    if (
-      step === 4 &&
-      (!formData.bankName )
-    ) {
-      alert("Please fill in all fields");
-      return;
-    }
     setStep(step + 1);
     localStorage.setItem("currentStep", step + 1);
   };
@@ -114,7 +87,7 @@ function MultiStepForm() {
           formData={formData}
           handleChange={handleChange}
           nextStep={handleNext}
-          setIsVerified={setIsVerified} // Pass setIsVerified to PhoneVerification
+          
         />
       )}
       {step === 3 && (

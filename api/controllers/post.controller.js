@@ -1,5 +1,9 @@
 import prisma from "../lib/prisma.js";
 import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken";
+import mongoose from 'mongoose'; // Import instead of require
+
+
 
 // Get multiple posts based on query parameters
 export const getPosts= async(req,res)=>{
@@ -24,29 +28,68 @@ export const getPosts= async(req,res)=>{
     res.status(500).json({message:"Failed to get posts"})
   }
 }
+
+
 // Get a single post by ID
 export const getPost = async (req, res) => {
-  const id  = req.params.id;
+  const id = req.params.id;
+
+  // Check if ID is valid
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid post ID" });
+  }
   
+
   try {
     const post = await prisma.post.findUnique({
-      where: { id: new ObjectId(id) },
+      where: { id },
       include: {
         postDetail: true,
+        user: {
+          select: {
+            name: true,
+            avatar: true,
+          },
+        },
       },
     });
 
-    if (!post) {
-      return res.status(404).json({ message: "Post not found" });
-    }
+    // if (!post) {
+    //   return res.status(404).json({ message: "Post not found." });
+    // }
 
-    res.status(200).json(post);
+    let userId;
+    const token = req.cookies?.token;
+
+    if(!token){
+      userId =null;
+    }else{
+      jwt.verify(token,process.env.JWT_SECRET_KEY, async (err,payload)=>{
+        if(err){
+          userId =null;
+        }else{
+          userId =payload.id;
+        }
+      })
+    }
+    
+
+    const saved = await prisma.savedPost.findUnique({
+      where: {
+        userId_postId: {
+          postId: id,
+          userId,
+        },
+      },
+    });
+
+    res.status(200).json({ ...post, isSaved: saved ? true : false });
+
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: "Failed to fetch post" });
   }
 };
-
 // Add a new post
 export const addPost = async (req, res) => {
   const body = req.body;
@@ -71,17 +114,18 @@ export const addPost = async (req, res) => {
 };
 
 // Update a post
+// Update a post
 export const updatePost = async (req, res) => {
   const { id } = req.params;
   const { postData, postDetail } = req.body;
 
-  if (!ObjectId.isValid(id)) {
+  if (!isValidObjectId(id)) {
     return res.status(400).json({ message: "Invalid post ID" });
   }
 
   try {
     const updatedPost = await prisma.post.update({
-      where: { id: ObjectId(id).toString() },
+      where: { id },
       data: {
         ...postData,
         postDetail: {
@@ -92,36 +136,32 @@ export const updatePost = async (req, res) => {
 
     res.status(200).json(updatedPost);
   } catch (err) {
-    console.log(err);
+    console.error(err);
     res.status(500).json({ message: "Failed to update post" });
   }
 };
 
+
 // Delete a post
-export const deletePost = async (req, res) => {
-  const { id } = req.params;
-  const tokenUserId = req.userId;
+export const deletePost= async(req,res)=>{
+  const id= req.params.id;
+  const tokenUserId= req.userId;
+  try{
+     const post= await prisma.post.findUnique({
+      where:{id},
+     });
+if(post.userId !== tokenUserId){
+  return res.status(403).json({message:"not Athorized"});
+}
 
-  if (!ObjectId.isValid(id)) {
-    return res.status(400).json({ message: "Invalid post ID" });
+await prisma.post.delete({
+  where:{id},
+})
+
+    res.status(200).json({message:"deleted"})
+
+  }catch(err){
+    console.log(err)
+    res.status(500).json({message:"Failed to delete"})
   }
-
-  try {
-    const post = await prisma.post.findUnique({
-      where: { id: ObjectId(id).toString() },
-    });
-
-    if (!post || post.userId !== tokenUserId) {
-      return res.status(403).json({ message: "Not authenticated" });
-    }
-
-    await prisma.post.delete({
-      where: { id: ObjectId(id).toString() },
-    });
-
-    res.status(200).json({ message: "Post deleted successfully" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Failed to delete post" });
-  }
-};
+}

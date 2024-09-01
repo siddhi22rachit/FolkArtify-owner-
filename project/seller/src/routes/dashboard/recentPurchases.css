@@ -1,0 +1,95 @@
+.recent-purchases-container {
+  padding: 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.unprocessed-section,
+.accepted-section,
+.rejected-section {
+  margin-bottom: 20px;
+}
+
+h3 {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.purchase-item {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.product-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.purchase-details {
+  flex: 1;
+}
+
+.product-name {
+  font-weight: bold;
+  display: block;
+}
+
+.customer-name {
+  color: #555;
+}
+
+.price {
+  display: block;
+  color: #333;
+  font-weight: bold;
+}
+
+.purchase-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.purchase-actions button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.purchase-actions button:hover {
+  background-color: #0056b3;
+}
+
+.rejected .purchase-actions button {
+  background-color: #dc3545;
+}
+
+.rejected .purchase-actions button:hover {
+  background-color: #c82333;
+}
+
+.rejected {
+  border: 1px solid #dc3545;
+  background-color: #f8d7da;
+}

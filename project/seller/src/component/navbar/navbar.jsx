@@ -9,7 +9,7 @@ const Navbar = () => {
   console.log("Current User:", currentUser);
 
   const handleSubmit = () => {
-    navigate("/form");
+    navigate("/register");
   };
 
   return (
@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         {currentUser ? (
           <>
-            <Link to="/about">Dashboard</Link>
+            <Link to="/dashboard/sales">Dashboard</Link>
             <Link to="/form">List</Link>
             <Link to="/about">About</Link>
           </>
@@ -40,7 +40,7 @@ const Navbar = () => {
         {currentUser ? (
           <div className="userNav">
              <img
-              src={currentUser.images}
+              src={currentUser.avatar}
               alt=""
             />
             <span>{currentUser.name}</span>

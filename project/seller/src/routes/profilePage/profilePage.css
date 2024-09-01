@@ -1,0 +1,72 @@
+.profilePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.details {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  font-size: 44px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensures the image covers the entire circular area */
+  margin-bottom: 15px; /* Space between image and username */
+}
+
+.info span {
+  margin-bottom: 10px;
+  font-size: 38px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 20px 30px;
+  font-size: 26px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button.update-btn {
+  background-color: #2196F3;
+  margin-right: 10px; /* Space between update and logout buttons */
+}
+
+button.update-btn:hover {
+  background-color: #0b7dda;
+}

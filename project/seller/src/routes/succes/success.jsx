@@ -6,7 +6,7 @@ const Success = () => {
     <div>
       <h1>Registration Successful!</h1>
       <p>Your information has been saved successfully.</p>
-      <a href='/'>continue</a>
+      <a href='/login'>continue</a>
     </div>
   );
 };
